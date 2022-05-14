@@ -8,9 +8,11 @@ const Forms = () => {
     message: "",
     subscribe: false,
   });
+  //object name are html name attributes
 
   const changeData = (e) => {
     const { name, value, type, checked } = e.target;
+    //targeting the things which required
     setformsData((lastValue) => {
       return {
         ...lastValue,
