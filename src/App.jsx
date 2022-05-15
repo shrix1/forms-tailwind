@@ -16,7 +16,7 @@ const Forms = () => {
     setformsData((lastValue) => {
       return {
         ...lastValue,
-        [name]: type === "checkBox" ? checked : value,
+        [name]: type === "checkbox" ? checked : value,
         //checking name = value
         //if type is checkbox means it will check the checked thing
         //...lastvalue for fullValue getting/prevValue
