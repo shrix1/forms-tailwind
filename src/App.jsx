@@ -1,5 +1,7 @@
 import "./index.css";
 import React, { useState } from "react";
+import { database } from "./firebase";
+import { ref, push, child, update } from "firebase/database";
 
 const Forms = () => {
   const [formsData, setformsData] = useState({
@@ -27,6 +29,16 @@ const Forms = () => {
   const triggerForm = (e) => {
     e.preventDefault();
     console.log(formsData);
+    //firebase database
+    //push takes 2 parameter child and request a posts
+    //child take 1 parameter as ref()
+    //ref take 1 parameter as database which i passed from firebase.js
+    //.key to create a keyvalue pair
+    const newPostKey = push(child(ref(database), "posts")).key; //this line is important for random submits
+    const updates = {};
+    // "/" for adding collections in it
+    updates["/" + newPostKey] = formsData;
+    return update(ref(database), updates);
   };
 
   return (
@@ -125,7 +137,7 @@ const Forms = () => {
               </label>
             </div>
 
-            {/*-------------submit btn -------------------*/}
+            {/*-------------submit btn-------------------*/}
             <button
               className="text-xl w-[150px] 
               h-[50px] bg-sky-700 rounded text-white hover:border-sky-500 
